@@ -31,3 +31,7 @@
 # You never get half an operation
 
 # req.body is an object containing data from the client(POST request)
+
+# Authorization (we need to prevent user details to be private)
+
+# create an authentication middleware
