@@ -19,3 +19,15 @@
 # Create new project & create a cluster
 
 # create database folder -> mongodb.js file for database connection
+
+# controllers are dedicated space to write the function logic/ api logic
+
+# we are creating mongoose session to make atomic operations. database operations that update the state are atomic. All or nothing
+
+# Insert either works completely or it doesn't
+
+# Update either works completely or it doesn't
+
+# You never get half an operation
+
+# req.body is an object containing data from the client(POST request)

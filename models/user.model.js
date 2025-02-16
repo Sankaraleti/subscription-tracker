@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "user name is requierd"],
+      required: [true, "User name is required"],
       trim: true,
       minLength: 2,
       maxLength: 50,
@@ -15,18 +15,18 @@ const userSchema = new mongoose.Schema(
       unique: true,
       trim: true,
       lowercase: true,
-      match: [/\S+@\S+\.\S+/, "Please fill a valid email address"],
+      match: [/\S+@\S+\.\S+/, "Please provide a valid email address"],
     },
     password: {
       type: String,
-      require: [true, "User Password is required"],
-      minLength: 6,
+      required: [true, "User Password is required"],
+      minLength: [6, "Password must be at least 6 characters"],
     },
   },
   {
     timestamps: true,
   }
 );
-
+mongoose.set("strictQuery", true);
 const User = mongoose.model("User", userSchema);
 export default User;
