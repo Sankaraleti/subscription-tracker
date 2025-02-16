@@ -35,3 +35,11 @@
 # Authorization (we need to prevent user details to be private)
 
 # create an authentication middleware
+
+# restrict the no.of api calls that can make in a minute (spam things)
+
+# arcjet could help us here to prevent spam or bot apis calls
+
+# i.e Rate limiting (you can make certain no.of calls at time)
+
+# install arcjet for node&express and then create a config file for it and then a separate middlware for arcjet
