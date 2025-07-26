@@ -1,4 +1,6 @@
 import Subscription from "../models/subscription.model.js";
+import { workflowClient } from "../config/upstash.js";
+import { SERVER_URL } from "../config/env.js";
 //need to have admin authorization in order to get all subscriptions
 export const getAllSubscriptions = async (req, res, next) => {
   try {
@@ -37,10 +39,20 @@ export const createSubscription = async (req, res, next) => {
       ...req.body,
       user: req.user._id,
     });
+    const { workflowRunId } = await workflowClient.trigger({
+      url: `${SERVER_URL}/api/v1/workflows/subscription/reminder`,
+      body: {
+        subscriptionId: subscription._id,
+      },
+      headers: {
+        "content-type": "application/json",
+      },
+      retries: 0,
+    });
     res.status(201).json({
       success: true,
       message: "subscription created successfully",
-      data: subscription,
+      data: { subscription, workflowRunId },
     });
   } catch (err) {
     next(err);
